@@ -27,15 +27,20 @@ LAB4 = $(call available,$(LAB4_BINS))
 LAB5 = $(call available,$(LAB5_BINS))
 PROGRAMS = $(LAB1) $(LAB2) $(LAB3) $(LAB4) $(LAB5)
 
-.PHONY: all lab1 lab2 lab3 lab4 lab5 run-lab1 run-lab2 run-lab3 run-lab4 run-lab5 run-all debug help clean
+.PHONY: all lab1 lab2 lab2_1 lab2_2 lab2_3 lab3 lab4 lab5 run-lab1 run-lab2 run-lab3 run-lab4 run-lab5 run-all debug help clean
 
 all: $(PROGRAMS)
 
 lab1: $(LAB1)
 lab2: $(LAB2)
+lab2_1: $(BUILD_DIR)/lab2_1
+lab2_2: $(BUILD_DIR)/lab2_2
+lab2_3: $(BUILD_DIR)/lab2_3
 lab3: $(LAB3)
 lab4: $(LAB4)
 lab5: $(LAB5)
+
+
 
 # Explicit rule for the one binary whose name differs from its source
 $(BUILD_DIR)/formats: $(SRC_DIR)/format_specifiers.c
