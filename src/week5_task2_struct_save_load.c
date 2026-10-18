@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // week5_task2_struct_save_load.c
 // Name: ________  Surname: ________  Student ID: ________
 //
@@ -61,3 +62,67 @@ int load_student(const char *filename, Student *out) {
     (void)filename; (void)out;  // remove this line when you implement the function
     return -1;
 }
+=======
+#include <stdio.h>
+
+typedef struct {
+  char name[50];
+  int age;
+  float gpa;
+} Student;
+
+int save_student(const Student* s, const char* filename) {
+  FILE* fp = fopen(filename, "w");
+
+  if (fp == NULL) {
+    perror("Error opening file");
+    return -1;
+  }
+
+  fprintf(fp, "%s %d %.2f\n", s->name, s->age, s->gpa);
+
+  fclose(fp);
+
+  return 0;
+}
+
+int load_student(const char* filename, Student* out) {
+  FILE* fp = fopen(filename, "r");
+
+  if (fp == NULL) {
+    perror("Error opening file");
+    return -1;
+  }
+
+  if (fscanf(fp, "%49s %d %f", out->name, &out->age, &out->gpa) != 3) {
+    fclose(fp);
+    return -1;
+  }
+
+  fclose(fp);
+
+  return 0;
+}
+
+int main(void) {
+  Student student = {"Alice", 21, 3.75f};
+  Student loaded_student;
+
+  printf("Saving student to file...\n");
+
+  if (save_student(&student, "student.txt") != 0) {
+    return 1;
+  }
+
+  printf("Loading student from file...\n");
+
+  if (load_student("student.txt", &loaded_student) != 0) {
+    return 1;
+  }
+
+  printf("Loaded student: %s, %d, GPA %.2f\n", loaded_student.name,
+         loaded_student.age, loaded_student.gpa);
+
+  return 0;
+}
+>>>>>>> 5a92af5 (Complete Lab 5)

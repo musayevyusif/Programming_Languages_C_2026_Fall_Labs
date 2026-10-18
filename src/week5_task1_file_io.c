@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 // week5_task1_file_io.c
 // Name: ________  Surname: ________  Student ID: ________
 //
@@ -38,3 +39,51 @@ int main(int argc, char *argv[]) {
 
     return EXIT_SUCCESS;
 }
+=======
+#include <stdio.h>
+
+int main(int argc, char* argv[]) {
+  const char* filename = "data.txt";
+
+  if (argc > 1) {
+    filename = argv[1];
+  }
+
+  FILE* fp = fopen(filename, "w");
+
+  if (fp == NULL) {
+    perror("Error opening file for writing");
+    return 1;
+  }
+
+  printf("Writing lines to %s...\n", filename);
+
+  fprintf(fp, "Hello, file I/O in C!\n");
+  fprintf(fp, "This is another line.\n");
+
+  fclose(fp);
+
+  fp = fopen(filename, "r");
+
+  if (fp == NULL) {
+    perror("Error opening file for reading");
+    return 1;
+  }
+
+  printf("Reading contents:\n");
+
+  char line[256];
+  int line_count = 0;
+
+  while (fgets(line, sizeof(line), fp) != NULL) {
+    printf("%s", line);
+    line_count++;
+  }
+
+  fclose(fp);
+
+  printf("Lines read: %d\n", line_count);
+
+  return 0;
+}
+>>>>>>> 5a92af5 (Complete Lab 5)
